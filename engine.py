@@ -24,7 +24,7 @@ def run_automation(bulk_file, media, text):
     try:
         if not terminate_flag:
             with sync_playwright() as p:
-                context = p.firefox.launch_persistent_context(user_data_path_, headless=False)
+                context = p.firefox.launch_persistent_context(user_data_path_, headless=True)
                 page = context.new_page()
                 page.goto('https://web.whatsapp.com')
                 page.wait_for_load_state("load")
