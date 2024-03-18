@@ -3,10 +3,8 @@ import os
 import random
 import string
 import sys
-
 import matplotlib
 import pandas as pd
-# from main import data
 from datetime import datetime
 from matplotlib import pyplot as plt
 from playwright.sync_api import sync_playwright
@@ -16,7 +14,7 @@ matplotlib.use('Agg')
 terminate_flag = False
 completed_task = []
 uncompleted_task = []
-user_data_path_ = "\\Default_WA_personal_whatsapp"
+user_data_path_ = "WhatsappAutomation/Default_WA_personal_whatsapp"
 logs = {}
 
 
@@ -24,7 +22,7 @@ def run_automation(bulk_file, media, text):
     try:
         if not terminate_flag:
             with sync_playwright() as p:
-                context = p.firefox.launch_persistent_context(user_data_path_, headless=True)
+                context = p.firefox.launch_persistent_context(user_data_path_, headless=False)
                 page = context.new_page()
                 page.goto('https://web.whatsapp.com')
                 page.wait_for_load_state("load")

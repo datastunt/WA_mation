@@ -15,11 +15,12 @@ COPY requirements.txt /app/requirements.txt
 # Install dependencies
 RUN apt-get update && \
     pip install --upgrade pip && \
-    pip install -r req.txt && \
+    pip install -r requirements.txt && \
+    pip install playwright && \
     playwright install && \
     playwright install-deps
 
 EXPOSE 5000
 
 # Set the entry point for the container
-CMD ["python3", "Automation.py"]
+CMD ["python3", "main.py"]
