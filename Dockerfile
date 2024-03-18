@@ -9,7 +9,6 @@ COPY main.py /app/
 COPY engine.py /app/
 COPY data_layer.py /app/
 COPY templates /app/templates
-COPY Default_WA_personal_whatsapp /app/Default_WA_personal_whatsapp
 COPY requirements.txt /app/requirements.txt
 
 # Install dependencies
