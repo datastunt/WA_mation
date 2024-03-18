@@ -4,9 +4,6 @@ FROM python:3.12
 # Set the working directory inside the container
 WORKDIR /app
 
-# Set DEBIAN_FRONTEND to noninteractive
-ENV DEBIAN_FRONTEND noninteractive
-
 # Copy the Python code, templates, &, session file into the container
 COPY main.py /app/
 COPY engine.py /app/
@@ -31,7 +28,7 @@ RUN apt-get update && \
     playwright install && \
     playwright install-deps
 
-EXPOSE 5000
+EXPOSE 80
 
 # Set the entry point for the container
 CMD ["python3", "main.py"]
