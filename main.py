@@ -80,3 +80,39 @@ def download_pdf():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
+
+
+
+#
+# import threading
+# from engine import *
+# from flask import Flask, render_template, request, Response
+# app = Flask(__name__)
+# data = {}
+# @app.route("/")
+# def home():
+#     return render_template('index.html')
+# def start_automation_thread(bulk_file, media, text):
+#     global data
+#     result = run_automation(bulk_file, media, text)
+#     if result is not None:
+#         data = dict(result)
+# @app.route("/automation", methods=['POST'])
+# def automation():
+#     global data
+#     media = request.files.get('media_content')
+#     text = request.form.get('message')
+#     bulk_file = request.files.get('bulkFile')
+#     # Start the automation task in a separate thread
+#     automation_thread = threading.Thread(target=start_automation_thread, args=(bulk_file, media, text))
+#     automation_thread.start()
+#     return render_template('logs_table.html', result=data)
+
+
+
+
+
+
+
+
+

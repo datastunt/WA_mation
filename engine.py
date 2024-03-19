@@ -22,11 +22,11 @@ def run_automation(bulk_file, media, text):
     try:
         if not terminate_flag:
             with sync_playwright() as p:
-                context = p.firefox.launch_persistent_context(user_data_path_, headless=True)
+                context = p.firefox.launch_persistent_context(user_data_path_, headless=False)
                 page = context.new_page()
                 page.goto('https://web.whatsapp.com')
                 page.wait_for_load_state("load")
-                page.wait_for_timeout(5000)
+                page.wait_for_timeout(10000)
 
                 if media:
                     media.save(media.filename)

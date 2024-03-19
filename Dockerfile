@@ -1,5 +1,5 @@
 # Use a base image with Python 3.12
-FROM python:3.10
+FROM python:3.12
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -28,7 +28,7 @@ RUN apt-get update && \
     playwright install && \
     playwright install-deps
 
-EXPOSE 80
+EXPOSE 8080
 
 # Set the entry point for the container
 CMD ["python3", "main.py"]
