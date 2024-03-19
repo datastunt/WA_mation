@@ -1,3 +1,4 @@
+playwright
 matplotlib==3.8.2
 pandas==2.1.4
 Flask==3.0.0
