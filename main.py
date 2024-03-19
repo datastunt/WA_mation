@@ -3,26 +3,26 @@ from engine import *
 from flask import Flask, render_template, request, Response
 
 app = Flask(__name__)
-data = {}
+whatsappdata = {}
 
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('wpindex.html')
 
 
 @app.route("/automation", methods=['POST'])
 def automation():
-    global data
+    global whatsappdata
     media = request.files.get('media_content')
     text = request.form.get('message')
     bulk_file = request.files.get('bulkFile')
     result = run_automation(bulk_file, media, text)
     if result is not None:
-        data = dict(result)
-        return render_template('logs_table.html', result=data)
+        whatsappdata = dict(result)
+        return render_template('logs_table.html', result=whatsappdata)
     else:
-        return render_template('logs_table.html', result=data)
+        return render_template('logs_table.html', result=whatsappdata)
 
     # automation_thread = threading.Thread(target=run_automation(bulk_file, media, text), args=(bulk_file, media, text))
     # automation_thread.start()
@@ -30,14 +30,17 @@ def automation():
 
 @app.route("/kill_automation", methods=['GET'])
 def kill_automation_route():
-    kill_automation()
-    return render_template('index.html')
-
+    res = kill_automation()
+    print(res)
+    if not res:
+        return render_template('index.html')
+    else:
+        return render_template('index.html')
 
 @app.route('/download_pdf')
 def download_pdf():
     # Combine completed and uncompleted job data
-    main_data = {'Done task': data['completed_job'], 'Undone task': data['uncompleted_job']}
+    main_data = {'Done task': whatsappdata['completed_job'], 'Undone task': whatsappdata['uncompleted_job']}
     # Efficient DataFrame creation
     rows = []
     for key, values in main_data.items():
